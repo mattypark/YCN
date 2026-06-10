@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youth Civics Network — Bringing Civic Engagement to Every Classroom</title>
+    <meta name="description" content="Youth Civics Network is a youth-led nonprofit bringing bipartisan civic engagement curricula to elementary and middle school students across the United States.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-inner">
+            <a href="#" class="navbar-logo">
+                <span class="logo-text">YCN</span>
+            </a>
+            <ul class="navbar-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#impact">Impact</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#stories">Stories</a></li>
+                <li><a href="#news">News</a></li>
+            </ul>
+            <a href="#get-involved" class="btn btn-gold navbar-cta">Join / Volunteer</a>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div class="mobile-menu">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#impact">Impact</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#stories">Stories</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#get-involved" class="btn btn-gold">Join / Volunteer</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ========== HERO — Dark box on gradient (YIP style) ========== -->
+    <header class="hero" id="hero">
+        <div class="hero-box">
+            <div class="hero-content">
+                <h1 class="hero-headline">Bringing Civic Engagement<br><span class="hero-headline-accent">to every</span> Classroom.</h1>
+                <p class="hero-sub">A youth-led nonprofit delivering bipartisan civics curricula to elementary and middle school students — one state chapter at a time.</p>
+                <div class="hero-ctas">
+                    <div class="pill-group">
+                        <a href="#get-involved" class="pill-link">Get Involved <span class="pill-arrow">&searr;</span></a>
+                        <a href="#about" class="pill-link">Learn More <span class="pill-arrow">&searr;</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== STATS BAR ========== -->
+    <section class="stats-bar" id="impact">
+        <div class="stats-inner">
+            <div class="stat-item">
+                <span class="stat-number" data-target="70">0</span><span class="stat-suffix">+</span>
+                <span class="stat-label">Volunteers Nationwide</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="12">0</span>
+                <span class="stat-label">State Chapters</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="500">0</span><span class="stat-suffix">+</span>
+                <span class="stat-label">Students Reached</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="3">0</span>
+                <span class="stat-label">Active Grants</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== WHO WE SERVE — Split scroll (left pinned, right scrolls) ========== -->
+    <section class="who-we-serve" id="about">
+        <div class="section-inner wws-grid">
+            <div class="wws-left">
+                <div class="wws-left-sticky">
+                    <h2 class="section-title">Who We Serve</h2>
+                    <p class="section-subtitle wws-subtitle">Three paths, one mission. Find where you fit.</p>
+                    <a href="#get-involved" class="btn btn-gold">Get Involved</a>
+                </div>
+            </div>
+            <div class="audience-cards wws-right">
+                <div class="audience-card">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="16" r="8" stroke="#7BB5A5" stroke-width="2.5" fill="none"/>
+                            <path d="M8 42c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="#7BB5A5" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                            <path d="M32 12l4-4m0 0l4 4m-4-4v8" stroke="#C8943A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">High School Volunteers</h3>
+                    <p class="card-text">Lead civics workshops in your community. No prior experience needed — just a passion for helping younger students understand how democracy works.</p>
+                    <a href="#get-involved" class="card-link">Start volunteering &rarr;</a>
+                </div>
+                <div class="audience-card">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <rect x="6" y="8" width="36" height="28" rx="3" stroke="#7BB5A5" stroke-width="2.5" fill="none"/>
+                            <path d="M6 16h36" stroke="#7BB5A5" stroke-width="2.5"/>
+                            <path d="M16 24h16M16 30h10" stroke="#7BB5A5" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="38" cy="38" r="8" fill="#C8943A" opacity="0.15"/>
+                            <path d="M35 38l2 2 4-4" stroke="#C8943A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Educators & Hosts</h3>
+                    <p class="card-text">Bring YCN's bipartisan curricula into your classroom or after-school program. We provide the materials, training, and volunteer support.</p>
+                    <a href="#get-involved" class="card-link">Partner with us &rarr;</a>
+                </div>
+                <div class="audience-card">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <path d="M24 4l4 8h8l-6 5 2 8-8-5-8 5 2-8-6-5h8z" stroke="#7BB5A5" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+                            <rect x="12" y="30" width="24" height="14" rx="3" stroke="#7BB5A5" stroke-width="2.5" fill="none"/>
+                            <path d="M20 37h8" stroke="#C8943A" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Funders & Partners</h3>
+                    <p class="card-text">Support the next generation of informed citizens. Your grant or sponsorship directly funds curriculum development and chapter expansion.</p>
+                    <a href="#get-involved" class="card-link">Fund our mission &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section><!-- /who-we-serve -->
+
+    <!-- ========== HOW IT WORKS — Pinned Horizontal Scroll ========== -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="hiw-pin">
+            <div class="hiw-header">
+                <h2 class="section-title hiw-title" aria-label="How It Works">
+                    <span class="hiw-word-mask"><span class="hiw-word">How</span></span>
+                    <span class="hiw-word-mask"><span class="hiw-word">It</span></span>
+                    <span class="hiw-word-mask"><span class="hiw-word">Works</span></span>
+                </h2>
+                <p class="section-subtitle hiw-sub">Three steps from signup to classroom impact.</p>
+            </div>
+            <div class="hiw-track-wrapper">
+                <div class="hiw-track">
+                    <div class="step-item hiw-panel">
+                        <div class="step-number">01</div>
+                        <h3 class="step-title">Volunteer</h3>
+                        <p class="step-text">High schoolers sign up through their state chapter. No prerequisites — just enthusiasm for civic education and a willingness to learn.</p>
+                    </div>
+                    <div class="step-item hiw-panel">
+                        <div class="step-number">02</div>
+                        <h3 class="step-title">Train</h3>
+                        <p class="step-text">Complete YCN's structured training program. Learn our bipartisan curriculum, classroom management basics, and age-appropriate teaching methods.</p>
+                    </div>
+                    <div class="step-item hiw-panel">
+                        <div class="step-number">03</div>
+                        <h3 class="step-title">Teach</h3>
+                        <p class="step-text">Lead engaging civics workshops for elementary and middle school students. Real impact, real classrooms, real change in your community.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SIGNATURE MOMENT — Letter Scrub Reveal ========== -->
+    <section class="signature-moment" id="signature">
+        <div class="signature-inner">
+            <div class="signature-word-container">
+                <span class="signature-word" aria-label="Democracy">
+                    <span class="sig-letter">D</span><span class="sig-letter">e</span><span class="sig-letter">m</span><span class="sig-letter">o</span><span class="sig-letter">c</span><span class="sig-letter">r</span><span class="sig-letter">a</span><span class="sig-letter">c</span><span class="sig-letter">y</span>
+                </span>
+                <span class="signature-sub">starts in the classroom.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== IMPACT STORIES ========== -->
+    <section class="impact-stories" id="stories">
+        <div class="section-inner">
+            <h2 class="section-title">Impact Stories</h2>
+            <p class="section-subtitle">Hear from volunteers and educators making a difference.</p>
+            <div class="stories-grid">
+                <div class="story-card">
+                    <div class="story-avatar">
+                        <div class="avatar-placeholder">JS</div>
+                    </div>
+                    <blockquote class="story-quote">"Teaching 4th graders about local government made me realize how much I didn't know myself. YCN gave me the tools to learn alongside my students."</blockquote>
+                    <cite class="story-cite">Jamie S., Volunteer — Texas Chapter</cite>
+                </div>
+                <div class="story-card">
+                    <div class="story-avatar">
+                        <div class="avatar-placeholder">MR</div>
+                    </div>
+                    <blockquote class="story-quote">"The curriculum is genuinely bipartisan. Parents from both sides of the aisle have told me they appreciate that their kids are learning how government works, not what to think about it."</blockquote>
+                    <cite class="story-cite">Ms. Rodriguez, 5th Grade Teacher — California</cite>
+                </div>
+                <div class="story-card">
+                    <div class="story-avatar">
+                        <div class="avatar-placeholder">AK</div>
+                    </div>
+                    <blockquote class="story-quote">"I started as a volunteer and now I run our state chapter. YCN showed me that high schoolers can create real change — we just needed the structure to do it."</blockquote>
+                    <cite class="story-cite">Alex K., Chapter Lead — Ohio</cite>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== NEWS / UPDATES ========== -->
+    <section class="news-section" id="news">
+        <div class="section-inner">
+            <h2 class="section-title">News & Updates</h2>
+            <p class="section-subtitle">What we've been working on.</p>
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="news-tag">Grant Update</div>
+                    <h3 class="news-title">YCN Advances Three Federal Grants for 2026 Expansion</h3>
+                    <p class="news-excerpt">Our finance team is finalizing applications for three grants that will fund curriculum development and new state chapter launches across the Southeast.</p>
+                    <time class="news-date">May 2026</time>
+                </article>
+                <article class="news-card">
+                    <div class="news-tag">Milestone</div>
+                    <h3 class="news-title">503(c)(3) Status Application Filed</h3>
+                    <p class="news-excerpt">A major step toward long-term sustainability. Tax-exempt status will unlock new funding streams and formalize our nonprofit structure.</p>
+                    <time class="news-date">April 2026</time>
+                </article>
+                <article class="news-card">
+                    <div class="news-tag">Chapters</div>
+                    <h3 class="news-title">Four New State Chapters Launching This Summer</h3>
+                    <p class="news-excerpt">Georgia, North Carolina, Virginia, and Michigan are onboarding volunteer teams and preparing for fall semester workshops.</p>
+                    <time class="news-date">March 2026</time>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== GET INVOLVED CTA ========== -->
+    <section class="get-involved" id="get-involved">
+        <div class="section-inner">
+            <h2 class="section-title gi-title">Ready to Make an Impact?</h2>
+            <p class="gi-text">Whether you want to volunteer, host workshops, or fund our mission — there's a place for you at YCN.</p>
+            <div class="gi-ctas">
+                <a href="mailto:join@youthcivicsnetwork.org" class="btn btn-gold btn-lg">Volunteer Now</a>
+                <a href="mailto:partners@youthcivicsnetwork.org" class="btn btn-white-outline btn-lg">Partner With Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-col">
+                <span class="footer-logo">Youth Civics Network</span>
+                <p class="footer-tagline">Bipartisan civic education for the next generation.</p>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-heading">Navigate</h4>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#stories">Stories</a></li>
+                    <li><a href="#news">News</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-heading">Connect</h4>
+                <ul>
+                    <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+                    <li><a href="https://twitter.com" target="_blank" rel="noopener">X / Twitter</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-heading">Support</h4>
+                <p class="footer-small">YCN is pursuing 503(c)(3) status. Your support helps us bring civics to every classroom.</p>
+                <a href="mailto:donate@youthcivicsnetwork.org" class="btn btn-gold btn-sm">Donate</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Youth Civics Network. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
