@@ -46,19 +46,23 @@
 
     const animateCount = (el) => {
       const target = Number(el.dataset.count);
+      const decimals = (el.dataset.count.split(".")[1] || "").length;
+      const prefix = el.dataset.prefix || "";
       const suffix = el.dataset.suffix || "";
       const duration = 1100;
       const start = performance.now();
 
+      const format = (n) =>
+        prefix + n.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals }) + suffix;
+
       const tick = (now) => {
         const progress = Math.min((now - start) / duration, 1);
         const eased = 1 - Math.pow(1 - progress, 3);
-        const value = Math.round(target * eased);
-        el.textContent = value.toLocaleString("en-US") + suffix;
+        el.textContent = format(target * eased);
         if (progress < 1) {
           requestAnimationFrame(tick);
         } else {
-          el.textContent = target.toLocaleString("en-US") + suffix;
+          el.textContent = format(target);
         }
       };
       requestAnimationFrame(tick);
