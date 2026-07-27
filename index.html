@@ -9,6 +9,8 @@
 <meta property="og:description" content="A youth-led nonprofit delivering nonpartisan civics curricula to elementary and middle school students, one state chapter at a time.">
 <meta property="og:type" content="website">
 
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -20,7 +22,9 @@
 
 <header class="site-header" id="site-header">
   <div class="inner site-header__inner">
-    <a class="logo" href="#">YCN</a>
+    <a class="logo" href="#" aria-label="Youth Civics Network — home">
+      <span class="logo__mark" role="img" aria-hidden="true"></span>
+    </a>
 
     <nav class="site-nav" aria-label="Primary">
       <ul>
@@ -28,6 +32,7 @@
         <li><a href="#impact">Impact</a></li>
         <li><a href="#how-it-works">How It Works</a></li>
         <li><a href="#stories">Stories</a></li>
+        <li><a href="#lessons">Lessons</a></li>
       </ul>
     </nav>
 
@@ -47,6 +52,7 @@
       <li><a href="#impact">Impact</a></li>
       <li><a href="#how-it-works">How It Works</a></li>
       <li><a href="#stories">Stories</a></li>
+      <li><a href="#lessons">Lessons</a></li>
       <li><a class="btn btn--primary" href="mailto:youthcivicsnetwork@gmail.com">Join / Volunteer</a></li>
     </ul>
   </nav>
@@ -182,7 +188,7 @@
         <p class="stat__label">Organization Partnerships</p>
       </div>
       <div class="stat">
-        <p class="stat__number" data-count="600" data-suffix="+">600+</p>
+        <p class="stat__number" data-count="600" data-suffix="+" data-impact-total>600+</p>
         <p class="stat__label">Kids Reached</p>
       </div>
     </div>
@@ -269,6 +275,40 @@
     </div>
   </section>
 
+  <!-- IN THE CLASSROOM -->
+  <section class="classroom" id="classroom">
+    <div class="inner">
+      <div class="section-head">
+        <p class="eyebrow"><span class="eyebrow__rule" aria-hidden="true"></span>In the classroom</p>
+        <h2>This is what a lesson actually looks like.</h2>
+        <p class="section-head__lede">No stock photography. These are our volunteers,
+           running the Congress lesson with 3rd through 5th graders.</p>
+      </div>
+
+      <div class="classroom__grid">
+        <figure class="classroom__figure">
+          <img src="assets/lesson-congress.jpg" width="1500" height="1125" loading="lazy" decoding="async"
+               alt="A YCN volunteer stands at a whiteboard reading &quot;HOR, Congress, Senate&quot; and speaks to a classroom of elementary students seated at tables.">
+          <figcaption>
+            <span class="classroom__lesson">Congress</span>
+            Introducing the House and the Senate, right before students draft and
+            vote on bills of their own.
+          </figcaption>
+        </figure>
+
+        <figure class="classroom__figure">
+          <img src="assets/lesson-districts.jpg" width="1500" height="1125" loading="lazy" decoding="async"
+               alt="Two YCN volunteers sit at a table with six students who are drawing on worksheets titled &quot;My Congressional District.&quot;">
+          <figcaption>
+            <span class="classroom__lesson">Districts</span>
+            Small groups map a congressional district of their own, then explain
+            who lives in it and what it needs.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <!-- SIGNATURE MOMENT -->
   <section class="signature" aria-label="Mission statement">
     <div class="signature__pin">
@@ -326,6 +366,169 @@
     </div>
   </section>
 
+  <!-- LESSON LIBRARY -->
+  <section class="lessons" id="lessons">
+    <div class="inner">
+      <div class="section-head">
+        <p class="eyebrow"><span class="eyebrow__rule" aria-hidden="true"></span>Open curriculum</p>
+        <h2>Take our lessons into your own classroom.</h2>
+        <p class="section-head__lede">You don't need to be a YCN chapter to teach this.
+           Every lesson is free, nonpartisan, and built for grades 3–5. Tell us who you
+           are and how many students you're reaching, and it's yours.</p>
+      </div>
+
+      <ul class="lesson-list">
+        <li class="lesson">
+          <div class="lesson__head">
+            <p class="lesson__tag">Local government</p>
+            <h3>City Councils</h3>
+          </div>
+          <p class="lesson__desc">Who sits on a city council and how they decide what a
+             city builds. Includes The Great Budget Debate and Council Pass, a role-play
+             where students argue a real problem in front of a student council.</p>
+          <p class="lesson__meta"><span>Grades 3–5</span><span>~35 min</span><span>2 games</span></p>
+          <button class="lesson__btn" type="button"
+                  data-lesson-file="assets/lessons/ycn-city-councils.pdf"
+                  data-lesson-title="City Councils">
+            Download lesson<span class="lesson__arrow" aria-hidden="true">↓</span>
+          </button>
+        </li>
+
+        <li class="lesson">
+          <div class="lesson__head">
+            <p class="lesson__tag">Local government</p>
+            <h3>School Boards</h3>
+          </div>
+          <p class="lesson__desc">The board that sets the rules of a student's own school —
+             what it controls, who serves on it, and why members aren't teachers. Students
+             write a policy they'd pass, then vote on the best one.</p>
+          <p class="lesson__meta"><span>Grades 3–5</span><span>~35 min</span><span>2 games</span></p>
+          <button class="lesson__btn" type="button"
+                  data-lesson-file="assets/lessons/ycn-school-boards.pdf"
+                  data-lesson-title="School Boards">
+            Download lesson<span class="lesson__arrow" aria-hidden="true">↓</span>
+          </button>
+        </li>
+
+        <li class="lesson">
+          <div class="lesson__head">
+            <p class="lesson__tag">Federal &amp; state</p>
+            <h3>Congress and State Government</h3>
+          </div>
+          <p class="lesson__desc">Our fullest unit. Students draw their own districts, put
+             bills in a hat, and run a mock Congress through the House, the Senate, and a
+             presidential signature — then do it again at the state level with a budget.</p>
+          <p class="lesson__meta"><span>Grades 3–5</span><span>Multi-week</span><span>Series</span></p>
+          <button class="lesson__btn" type="button"
+                  data-lesson-file="assets/lessons/ycn-congress-and-state-government.pdf"
+                  data-lesson-title="Congress and State Government">
+            Download lesson<span class="lesson__arrow" aria-hidden="true">↓</span>
+          </button>
+        </li>
+
+        <li class="lesson">
+          <div class="lesson__head">
+            <p class="lesson__tag">Community</p>
+            <h3>Police and Firefighters</h3>
+          </div>
+          <p class="lesson__desc">What first responders do, and how the two roles differ.
+             Students sort real scenarios into police, firefighter, or both — and find out
+             how often the honest answer is both.</p>
+          <p class="lesson__meta"><span>Grades 3–5</span><span>~35 min</span><span>2 games</span></p>
+          <button class="lesson__btn" type="button"
+                  data-lesson-file="assets/lessons/ycn-first-responders.pdf"
+                  data-lesson-title="Police and Firefighters">
+            Download lesson<span class="lesson__arrow" aria-hidden="true">↓</span>
+          </button>
+        </li>
+
+        <li class="lesson">
+          <div class="lesson__head">
+            <p class="lesson__tag">Local government</p>
+            <h3>Public Transit Authorities</h3>
+          </div>
+          <p class="lesson__desc">The agencies that run buses and trains, and who depends
+             on them. Students design their own transit agency, then act out the same trip
+             twice — once with an agency, once without.</p>
+          <p class="lesson__meta"><span>Grades 3–5</span><span>~35 min</span><span>2 games</span></p>
+          <button class="lesson__btn" type="button"
+                  data-lesson-file="assets/lessons/ycn-public-transit.pdf"
+                  data-lesson-title="Public Transit Authorities">
+            Download lesson<span class="lesson__arrow" aria-hidden="true">↓</span>
+          </button>
+        </li>
+      </ul>
+
+      <p class="lessons__note">
+        Every lesson follows the same shape: a five-minute warm-up, ten minutes of
+        instruction, two games, and a five-minute wrap-up. Lectures never mention
+        political parties.
+      </p>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD DIALOG -->
+  <div class="modal" id="download-modal" hidden>
+    <div class="modal__scrim" data-modal-close></div>
+    <div class="modal__panel" role="dialog" aria-modal="true"
+         aria-labelledby="modal-title" aria-describedby="modal-desc">
+      <button class="modal__close" type="button" data-modal-close aria-label="Close">
+        <span aria-hidden="true">✕</span>
+      </button>
+
+      <form class="modal__form" id="download-form" novalidate>
+        <p class="eyebrow"><span class="eyebrow__rule" aria-hidden="true"></span>Two questions</p>
+        <h2 id="modal-title">Download <span id="modal-lesson">this lesson</span></h2>
+        <p class="modal__lede" id="modal-desc">
+          Your answers let us count the students this reaches. That total is the number
+          on this site — it goes up when you tell us.
+        </p>
+
+        <fieldset class="field">
+          <legend>You're a…</legend>
+          <div class="radio-row">
+            <label class="radio"><input type="radio" name="role" value="teacher" checked><span>Teacher</span></label>
+            <label class="radio"><input type="radio" name="role" value="parent"><span>Parent</span></label>
+            <label class="radio"><input type="radio" name="role" value="librarian"><span>Librarian</span></label>
+            <label class="radio"><input type="radio" name="role" value="other"><span>Other</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="students">How many students will this reach?</label>
+          <input type="number" id="students" name="students" inputmode="numeric"
+                 min="1" max="2000" step="1" required
+                 aria-describedby="students-help students-error">
+          <p class="field__help" id="students-help">A rough count is fine — one class, one co-op, one club.</p>
+          <p class="field__error" id="students-error" role="alert" hidden></p>
+        </div>
+
+        <div class="field">
+          <label for="email">Email <span class="field__optional">(optional)</span></label>
+          <input type="email" id="email" name="email" autocomplete="email"
+                 aria-describedby="email-help email-error">
+          <p class="field__help" id="email-help">Only so we can send updates to this lesson. We don't share it.</p>
+          <p class="field__error" id="email-error" role="alert" hidden></p>
+        </div>
+
+        <button class="btn btn--primary modal__submit" type="submit" id="download-submit">
+          Get the lesson
+        </button>
+        <p class="modal__fineprint">Free to use and adapt. Please keep it nonpartisan.</p>
+      </form>
+
+      <div class="modal__done" id="download-done" hidden>
+        <p class="modal__check" aria-hidden="true">↓</p>
+        <h2>Your download is starting.</h2>
+        <p class="modal__lede" id="download-done-msg"></p>
+        <p class="modal__fallback">
+          Nothing happened? <a id="download-fallback" href="#" download>Download it directly.</a>
+        </p>
+        <button class="btn btn--outline-dark" type="button" data-modal-close>Close</button>
+      </div>
+    </div>
+  </div>
+
   <!-- FINAL CTA -->
   <section class="final-cta" id="get-involved">
     <div class="inner final-cta__inner">
@@ -344,7 +547,10 @@
 <footer class="site-footer">
   <div class="inner site-footer__grid">
     <div class="site-footer__brand">
-      <p class="site-footer__logo">Youth Civics Network</p>
+      <p class="site-footer__logo">
+        <span class="logo__mark logo__mark--light" role="img" aria-hidden="true"></span>
+        <span class="sr-only">Youth Civics Network</span>
+      </p>
       <p>Nonpartisan civic education for the next generation.</p>
     </div>
 
@@ -354,6 +560,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="#how-it-works">How It Works</a></li>
         <li><a href="#stories">Stories</a></li>
+        <li><a href="#lessons">Lessons</a></li>
       </ul>
     </div>
 
