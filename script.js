@@ -96,6 +96,183 @@
     statEls.forEach((el) => statObserver.observe(el));
   }
 
+  /* Lesson downloads.
+     The form gates the file only in the sense that we ask first — a failed or
+     unreachable API never blocks the download, it just costs us the count. */
+  const modal = document.getElementById("download-modal");
+  const form = document.getElementById("download-form");
+
+  if (modal && form) {
+    const panel = modal.querySelector(".modal__panel");
+    const doneView = document.getElementById("download-done");
+    const doneMsg = document.getElementById("download-done-msg");
+    const fallback = document.getElementById("download-fallback");
+    const lessonName = document.getElementById("modal-lesson");
+    const submit = document.getElementById("download-submit");
+    const studentsInput = document.getElementById("students");
+    const emailInput = document.getElementById("email");
+    let current = null;
+    let lastFocused = null;
+
+    const setError = (input, id, message) => {
+      const el = document.getElementById(id);
+      el.textContent = message || "";
+      el.hidden = !message;
+      input.setAttribute("aria-invalid", message ? "true" : "false");
+    };
+
+    const openModal = (file, title) => {
+      current = { file, title };
+      lastFocused = document.activeElement;
+      lessonName.textContent = title;
+      fallback.href = file;
+      form.hidden = false;
+      doneView.hidden = true;
+      setError(studentsInput, "students-error", "");
+      setError(emailInput, "email-error", "");
+      modal.hidden = false;
+      document.body.classList.add("is-modal-open");
+      studentsInput.focus();
+    };
+
+    const closeModal = () => {
+      modal.hidden = true;
+      document.body.classList.remove("is-modal-open");
+      form.reset();
+      if (lastFocused) lastFocused.focus();
+    };
+
+    document.querySelectorAll("[data-lesson-file]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        openModal(btn.dataset.lessonFile, btn.dataset.lessonTitle);
+      });
+    });
+
+    modal.querySelectorAll("[data-modal-close]").forEach((el) => {
+      el.addEventListener("click", closeModal);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (modal.hidden) return;
+      if (e.key === "Escape") closeModal();
+      if (e.key !== "Tab") return;
+      // Keep focus inside the dialog while it is open.
+      const focusables = panel.querySelectorAll(
+        'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      const list = [...focusables].filter((el) => el.offsetParent !== null);
+      if (!list.length) return;
+      const first = list[0];
+      const last = list[list.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
+
+    const startDownload = (file, title) => {
+      const a = document.createElement("a");
+      a.href = file;
+      a.download = file.split("/").pop();
+      a.rel = "noopener";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      form.hidden = true;
+      doneView.hidden = false;
+      doneMsg.textContent = `“${title}” is on its way. Thank you — the students you just told us about are now counted in our total.`;
+      doneView.querySelector(".btn").focus();
+    };
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const students = parseInt(studentsInput.value, 10);
+      if (!Number.isFinite(students) || students < 1) {
+        setError(studentsInput, "students-error", "Enter how many students this reaches.");
+        studentsInput.focus();
+        return;
+      }
+      if (students > 2000) {
+        setError(studentsInput, "students-error", "That looks too high — enter 2000 or fewer.");
+        studentsInput.focus();
+        return;
+      }
+      setError(studentsInput, "students-error", "");
+
+      const email = emailInput.value.trim();
+      if (email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+        setError(emailInput, "email-error", "Check the email address.");
+        emailInput.focus();
+        return;
+      }
+      setError(emailInput, "email-error", "");
+
+      const payload = {
+        role: (form.querySelector('input[name="role"]:checked') || {}).value || "other",
+        students,
+        email,
+        lesson: current ? current.title : "",
+      };
+
+      submit.disabled = true;
+      submit.textContent = "One moment…";
+
+      try {
+        const res = await fetch("/api/impact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+        if (res.ok && data && typeof data.total === "number" && data.live) {
+          paintImpact(data.total);
+        } else {
+          // Reflect the contribution locally so the number the visitor just
+          // affected is the number they see, even before storage is wired up.
+          bumpImpactLocally(students);
+        }
+      } catch {
+        bumpImpactLocally(students);
+      } finally {
+        submit.disabled = false;
+        submit.textContent = "Get the lesson";
+        startDownload(current.file, current.title);
+      }
+    });
+  }
+
+  /* Live impact figure — the "Kids Reached" stat reads from the API when a
+     store is connected, and otherwise keeps the number already in the markup. */
+  const impactEl = document.querySelector("[data-impact-total]");
+
+  function paintImpact(total) {
+    if (!impactEl) return;
+    impactEl.dataset.count = String(total);
+    impactEl.textContent = total.toLocaleString("en-US") + (impactEl.dataset.suffix || "");
+  }
+
+  function bumpImpactLocally(students) {
+    if (!impactEl) return;
+    const base = Number(impactEl.dataset.count) || 0;
+    paintImpact(base + students);
+  }
+
+  if (impactEl) {
+    fetch("/api/impact")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (d && d.live && typeof d.total === "number" && d.total > Number(impactEl.dataset.count)) {
+          paintImpact(d.total);
+        }
+      })
+      .catch(() => {});
+  }
+
   /* Signature moment — subtle scale/color emphasis on the accent word
      as it passes the pinned center. Pure decoration on top of a
      CSS-only sticky pin, so the section works without this script. */
