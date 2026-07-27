@@ -55,17 +55,30 @@
       const format = (n) =>
         prefix + n.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals }) + suffix;
 
+      let finished = false;
+      const finish = () => {
+        if (finished) return;
+        finished = true;
+        el.textContent = format(target);
+      };
+
       const tick = (now) => {
+        if (finished) return;
         const progress = Math.min((now - start) / duration, 1);
         const eased = 1 - Math.pow(1 - progress, 3);
-        el.textContent = format(target * eased);
         if (progress < 1) {
+          el.textContent = format(target * eased);
           requestAnimationFrame(tick);
         } else {
-          el.textContent = format(target);
+          finish();
         }
       };
       requestAnimationFrame(tick);
+
+      /* A stalled count must never leave a figure lower than the real one on
+         screen, so snap to the true value on a timer too — rAF stops firing
+         when the tab is backgrounded or frames are throttled. */
+      setTimeout(finish, duration + 250);
     };
 
     const statObserver = new IntersectionObserver(
