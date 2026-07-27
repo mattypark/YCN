@@ -11,7 +11,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -83,6 +83,13 @@
         </p>
         <svg viewBox="0 0 480 480" class="network-svg" role="img" aria-labelledby="network-title" aria-describedby="network-desc">
           <title id="network-title">YCN chapter network — 5 active, 4 launching this summer</title>
+
+          <defs>
+            <filter id="hand-wobble" x="-20%" y="-20%" width="140%" height="140%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="7" result="noise"/>
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="3.5" xChannelSelector="R" yChannelSelector="G"/>
+            </filter>
+          </defs>
 
           <g class="network-spokes">
             <line x1="240" y1="240" x2="240" y2="70"></line>
