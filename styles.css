@@ -8,6 +8,7 @@
   --sage-dark-deep: #2B4D43;   /* darker step, for text-on-sage contrast + gradients */
   --sage: #5A9B8A;
   --sage-light: #7BB5A5;
+  --sage-tint: #9AC7B7;        /* lightened step, for sage-as-text on sage-dark (--sage-light measured 2.79:1, below the 3:1 floor for large text) */
   --gold: #C8943A;
   --gold-tint: #F0C98F;        /* lightened step, for gold-as-text on sage-dark (2.4:1 fails at base value) */
   --cream: #F0EDE8;
@@ -17,8 +18,8 @@
   --light-gray: #DDD9D3;
 
   /* Type */
-  --font-display: "DM Serif Display", Georgia, serif;
-  --font-body: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   --step--1: clamp(0.8125rem, 0.78rem + 0.16vw, 0.875rem);   /* 13-14px */
   --step-0:  clamp(1.0625rem, 1.02rem + 0.2vw, 1.125rem);    /* 17-18px */
@@ -30,8 +31,7 @@
   --inner-max: 1200px;
   --inner-padding: 32px;
   --section-padding: 120px;
-  --radius: 20px;
-  --radius-sm: 10px;
+  --radius-sm: 6px;   /* buttons, cards — was 10px; sharper, less "rounded app" */
 
   /* Motion */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -61,7 +61,14 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: 1.1; margin: 0; }
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0;
+  font-optical-sizing: auto;
+  font-variation-settings: "SOFT" 20, "WONK" 1; /* Fraunces' hand-set irregularity — off for numerals/data, see .stat__number and .how__index */
+}
 p { margin: 0; }
 a { color: inherit; text-decoration: none; }
 ul, ol { margin: 0; padding: 0; list-style: none; }
@@ -114,7 +121,7 @@ img, svg { display: block; max-width: 100%; }
   font-weight: 600;
   font-size: var(--step--1);
   letter-spacing: 0.01em;
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   border: 1.5px solid transparent;
   cursor: pointer;
   min-height: 44px;
@@ -162,15 +169,11 @@ img, svg { display: block; max-width: 100%; }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(240, 237, 232, 0.72);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid transparent;
-  transition: border-color var(--dur-fast) var(--ease-out),
-              box-shadow var(--dur-fast) var(--ease-out);
+  background: var(--cream);
+  border-bottom: 1px solid var(--light-gray);
+  transition: box-shadow var(--dur-fast) var(--ease-out);
 }
 .site-header.is-scrolled {
-  border-bottom-color: var(--light-gray);
   box-shadow: 0 4px 24px rgba(26, 26, 26, 0.05);
 }
 
@@ -183,6 +186,8 @@ img, svg { display: block; max-width: 100%; }
 
 .logo {
   font-family: var(--font-display);
+  font-style: italic;
+  font-variation-settings: "opsz" 40, "SOFT" 30, "WONK" 1;
   font-size: 1.5rem;
   color: var(--sage-dark);
   margin-right: auto;
@@ -262,10 +267,10 @@ img, svg { display: block; max-width: 100%; }
    ========================================================================== */
 
 .hero {
-  background: linear-gradient(160deg, var(--sage-dark) 0%, var(--sage-dark-deep) 100%);
-  border-radius: 0 0 var(--radius) var(--radius);
-  margin-inline: 12px;
-  margin-top: 8px;
+  background-color: var(--sage-dark);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-repeat: repeat;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .hero__inner {
@@ -282,7 +287,16 @@ img, svg { display: block; max-width: 100%; }
   color: #fff;
   font-weight: 400;
 }
-.hero__heading-muted { color: rgba(255, 255, 255, 0.62); } /* 0.45 measured 2.66:1 on sage-dark, below the 3:1 floor for large text */
+.hero__heading-muted {
+  /* An editor's aside, not a faded word — swaps to the body face like a hand margin-note. */
+  font-family: var(--font-body);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 0.56em;
+  color: var(--sage-tint);
+  display: inline-block;
+  vertical-align: 4%;
+}
 
 .hero__subhead {
   margin-top: 28px;
@@ -301,6 +315,9 @@ img, svg { display: block; max-width: 100%; }
 .hero__network { position: relative; }
 .network-svg { width: 100%; height: auto; }
 
+.network-spokes {
+  filter: url(#hand-wobble); /* slight hand-sketched irregularity on the connecting lines only, not the nodes/labels */
+}
 .network-spokes line {
   stroke: rgba(255, 255, 255, 0.22);
   stroke-width: 1.5;
@@ -397,6 +414,8 @@ section:not(.hero):not(.signature) { padding-block: var(--section-padding); }
 }
 .stat__number {
   font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-variation-settings: "SOFT" 0, "WONK" 0; /* data, not prose — keep numerals crisp rather than hand-set */
   font-size: var(--step-2);
   color: #fff;
   font-variant-numeric: tabular-nums;
@@ -407,7 +426,7 @@ section:not(.hero):not(.signature) { padding-block: var(--section-padding); }
   font-size: var(--step--1);
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.85); /* 0.65 measured 3.81:1 on sage-dark, below the 4.5:1 floor for this small text */
 }
 
 @media (max-width: 720px) {
@@ -427,15 +446,16 @@ section:not(.hero):not(.signature) { padding-block: var(--section-padding); }
 .card {
   background: var(--cream-raised);
   border: 1px solid var(--light-gray);
+  border-left: 3px solid transparent;
   border-radius: var(--radius-sm);
   padding: 36px 32px;
   display: flex;
   flex-direction: column;
-  transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+  transition: border-color var(--dur-fast) var(--ease-out);
 }
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 32px rgba(26, 26, 26, 0.08);
+  border-color: var(--sage-light);
+  border-left-color: var(--gold);
 }
 .card h3 { font-size: var(--step-1); color: var(--sage-dark); }
 .card p { margin-top: 14px; color: var(--near-black); flex-grow: 1; }
@@ -466,6 +486,8 @@ section:not(.hero):not(.signature) { padding-block: var(--section-padding); }
 }
 .how__index {
   font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-variation-settings: "SOFT" 0, "WONK" 0;
   font-size: var(--step-1);
   color: var(--sage-dark); /* base --gold measured 2.32:1 on cream, below AA; also keeps gold reserved for CTA-only per the usage rule */
   display: block;
@@ -498,6 +520,8 @@ section:not(.hero):not(.signature) { padding-block: var(--section-padding); }
 }
 .signature__text {
   font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-variation-settings: "SOFT" 25, "WONK" 1;
   font-size: var(--step-3);
   color: rgba(255, 255, 255, 0.9);
   text-align: center;
@@ -599,8 +623,7 @@ section:not(.hero):not(.signature) { padding-block: var(--section-padding); }
 
 .final-cta {
   background: var(--gold);
-  border-radius: var(--radius);
-  margin-inline: 12px;
+  border-block: 1px solid rgba(33, 23, 5, 0.15);
 }
 .final-cta__inner { text-align: center; max-width: 640px; }
 .final-cta h2 { font-size: var(--step-2); color: #211705; }
@@ -628,7 +651,13 @@ section:not(.hero):not(.signature) { padding-block: var(--section-padding); }
   gap: 40px;
   padding-block: 72px 48px;
 }
-.site-footer__logo { font-family: var(--font-display); font-size: 1.5rem; color: #fff; }
+.site-footer__logo {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-variation-settings: "opsz" 40, "SOFT" 30, "WONK" 1;
+  font-size: 1.5rem;
+  color: #fff;
+}
 .site-footer__brand p:not(.site-footer__logo) { margin-top: 12px; }
 .site-footer h3 {
   font-family: var(--font-body);
