@@ -4,12 +4,40 @@ Homepage for the Youth Civics Network. Static HTML, CSS, and vanilla JS — no
 build step. Deployed on Vercel.
 
 ```
-index.html          the page
+index.html          home
+about.html          mission, lesson standard, chapters
+curriculum.html     all lessons, grouped into four tracks
+get-involved.html   the three audience paths
+lessons/*.html      one page per lesson (generated)
 styles.css          all styling; design tokens live at the top
 script.js           mobile nav, stat counters, lesson-download dialog
 api/impact.js       serverless endpoint for download tracking
-assets/             logo, classroom photos, lesson PDFs
+assets/             logo, classroom photos
+assets/lessons/     the downloadable lesson documents (generated)
+tools/build.py      generates curriculum.html + lessons/ from tools/source/
+tools/source/       the lesson plans, as Word documents — the source of truth
 ```
+
+## Editing the curriculum
+
+`tools/source/` holds the lesson documents. `tools/build.py` reads them and
+writes `curriculum.html`, every page under `lessons/`, and the download copies
+in `assets/lessons/`. Nothing else generates HTML.
+
+To change a lesson, edit its document in `tools/source/` and re-run:
+
+```
+python3 tools/build.py
+```
+
+To add a lesson, drop the document in `tools/source/` and add an entry to the
+`TRACKS` list at the top of `tools/build.py` — slug, title, filename, summary,
+length, and the names of its two games. Order in that list is the order on the
+page. The four tracks are Local government, State government, Federal
+government, and Elections and voting.
+
+Lessons are shipped as Word documents on purpose: a teacher can open one and
+adapt it for their class, which a PDF makes harder.
 
 ## The lesson library
 
